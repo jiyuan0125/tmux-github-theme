@@ -80,7 +80,7 @@ set "@prefix_highlight_copy_mode_attr" "fg=$github_visual_grey,bg=$github_yellow
 set "@prefix_highlight_output_suffix" " » "
 
 set "status-right" "#[fg=$github_white,bg=$github_visual_grey] « #[fg=$github_white,bg=$github_black] ${date_format} ${time_format} "
-set "status-left" "#[fg=$github_white,bg=$github_yellow] #S #[fg=$github_yellow,bg=$github_visual_grey] » #{prefix_highlight}"
+set "status-left" "#[fg=$github_white,bg=$github_yellow] #S #[fg=$github_white,bg=$github_visual_grey] » #{prefix_highlight}"
 
 set "window-status-format" "#[fg=$github_white,bg=$github_visual_grey] #I #W "
 set "window-status-current-format" "#[fg=$github_white,bg=$github_black,bold] #I #W "
