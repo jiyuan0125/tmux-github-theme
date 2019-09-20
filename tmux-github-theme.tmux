@@ -57,8 +57,8 @@ setw "window-status-activity-attr" "none"
 
 setw "window-status-separator" ""
 
-set "window-style" "fg=$github_light_grey"
-set "window-active-style" "fg=$github_black"
+#set "window-style" "fg=$github_visual_grey"
+#set "window-active-style" "fg=$github_black"
 
 set "pane-border-fg" "$github_black"
 set "pane-border-bg" "$github_white"
@@ -83,5 +83,4 @@ set "status-right" "#[fg=$github_white,bg=$github_visual_grey] « #[fg=$github_w
 set "status-left" "#[fg=$github_white,bg=$github_yellow] #S #[fg=$github_white,bg=$github_visual_grey] » #{prefix_highlight}"
 
 set "window-status-format" "#[fg=$github_white,bg=$github_visual_grey] #I #W "
-set "window-status-current-format" "#[fg=$github_white,bg=$github_black,bold] #I #W "
-
+set "window-status-current-format" "#[fg=$github_white,bg=$github_green,bold] #I #W "
