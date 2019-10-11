@@ -1,1 +1,0 @@
-# tmux-github-theme

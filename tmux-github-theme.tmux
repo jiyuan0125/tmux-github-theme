@@ -1,86 +1,51 @@
 #!/bin/bash
+
 github_black="#24292e"
-github_blue="#032f62"
 github_yellow="#df5f11"
-github_white="#ffffff"
+github_white="#feffff"
 github_green="#22863a"
 github_visual_grey="#41484f"
 github_light_grey="#eceef1"
+github_light_blue="#aedaf7"
 
-get() {
-   local option=$1
-   local default_value=$2
-   local option_value="$(tmux show-option -gqv "$option")"
+time_format="%R"
+date_format="%Y-%m-%d"
 
-   if [ -z "$option_value" ]; then
-      echo "$default_value"
-   else
-      echo "$option_value"
-   fi
-}
+tmux set-option -gq status "on"
+tmux set-option -gq status-justify "left"
 
-set() {
-   local option=$1
-   local value=$2
-   tmux set-option -gq "$option" "$value"
-}
+tmux set-option -gq status-left-length "100"
+tmux set-option -gq status-right-length "100"
+tmux set-option -gq status-right-attr "none"
 
-setw() {
-   local option=$1
-   local value=$2
-   tmux set-window-option -gq "$option" "$value"
-}
+tmux set-option -gq message-style "bg=$github_light_grey,fg=$github_black"
+tmux set-option -gq message-command-style "bg=$github_white,fg=$github_black"
 
-set "status" "on"
-set "status-justify" "left"
+tmux set-option -gq status-attr "none"
+tmux set-option -gq status-left-attr "none"
+tmux set-option -gq status-style "bg=$github_light_grey,fg=$github_black"
 
-set "status-left-length" "100"
-set "status-right-length" "100"
-set "status-right-attr" "none"
+tmux set-option -gq pane-border-style "fg=$github_light_grey"
+tmux set-option -gq pane-active-border-style "fg=$github_black"
 
-set "message-fg" "$github_black"
-set "message-bg" "$github_white"
+tmux set-window-option -gq mode-style "bg=$github_light_blue"
 
-set "message-command-fg" "$github_black"
-set "message-command-bg" "$github_white"
+tmux set-window-option -gq window-status-fg $github_black
+tmux set-window-option -gq window-status-bg $github_light_grey
+tmux set-window-option -gq window-status-attr "none"
+tmux set-window-option -gq window-status-activity-bg $github_black
+tmux set-window-option -gq window-status-activity-fg $github_white
+tmux set-window-option -gq window-status-activity-attr "none"
+tmux set-window-option -gq window-status-separator ""
 
-set "status-attr" "none"
-set "status-left-attr" "none"
+tmux set-option -gq @prefix_highlight_fg "$github_white"
+tmux set-option -gq @prefix_highlight_bg "$github_yellow"
+tmux set-option -gq @prefix_highlight_copy_mode_attr "bg=$github_yellow,fg=$github_visual_grey"
+tmux set-option -gq @prefix_highlight_output_prefix "« "
+tmux set-option -gq @prefix_highlight_output_suffix " "
 
-setw "window-status-fg" "$github_black"
-setw "window-status-bg" "$github_light_grey"
-setw "window-status-attr" "none"
+tmux set-option -gq status-right "#{prefix_highlight}#[fg=$github_visual_grey,bg=$github_light_grey]«#[fg=$github_light_grey,bg=$github_visual_grey] ${date_format} ${time_format} #[fg=$github_black,bg=$github_visual_grey]«#[fg=$github_light_grey,bg=$github_black] #h "
+tmux set-option -gq status-left "#[fg=$github_light_grey,bg=$github_yellow] #S #[fg=$github_visual_grey,bg=$github_light_grey]»"
 
-setw "window-status-activity-bg" "$github_black"
-setw "window-status-activity-fg" "$github_white"
-setw "window-status-activity-attr" "none"
-
-setw "window-status-separator" ""
-
-#set "window-style" "fg=$github_visual_grey"
-#set "window-active-style" "fg=$github_black"
-
-set "pane-border-fg" "$github_black"
-set "pane-border-bg" "$github_white"
-set "pane-active-border-fg" "$github_black"
-set "pane-active-border-bg" "$github_white"
-
-set "display-panes-active-colour" "$github_black"
-set "display-panes-colour" "$github_blue"
-
-set "status-bg" "$github_light_grey"
-set "status-fg" "$github_black"
-
-time_format=$(get "@github_time_format" "%R")
-date_format=$(get "@github_date_format" "%m-%d")
-
-set "@prefix_highlight_fg" "$github_white"
-set "@prefix_highlight_bg" "$github_yellow"
-set "@prefix_highlight_copy_mode_attr" "fg=$github_visual_grey,bg=$github_yellow"
-set "@prefix_highlight_output_suffix" " » "
-
-set "status-right" "#[fg=$github_white,bg=$github_visual_grey] « #[fg=$github_white,bg=$github_black] ${date_format} ${time_format} "
-set "status-left" "#[fg=$github_white,bg=$github_yellow] #S #[fg=$github_white,bg=$github_visual_grey] » #{prefix_highlight}"
-
-set "window-status-format" "#[fg=$github_white,bg=$github_visual_grey] #I #W "
-set "window-status-current-format" "#[fg=$github_white,bg=$github_green,bold] #I #W "
+tmux set-option -gq window-status-format "#[fg=$github_light_grey,bg=$github_visual_grey] #I » #W #[fg=$github_visual_grey,bg=$github_light_grey]»"
+tmux set-option -gq window-status-current-format "#[fg=$github_light_grey,bg=$github_green,bold] #I » #W #[fg=$github_visual_grey,bg=$github_light_grey]»"
